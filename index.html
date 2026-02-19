@@ -1,102 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Kaju ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(to bottom, #ff758c, #ff7eb3);
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff4d6d, #8e0e00);
+  text-align: center;
+  color: white;
+}
 
-    h1 {
-      color: white;
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
+/* Background Hearts */
+.bg-heart {
+  position: absolute;
+  color: rgba(255,255,255,0.3);
+  pointer-events: none;
+  animation: fall linear infinite;
+}
 
-    button {
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 30px;
-      background: white;
-      color: #ff4d6d;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
 
-    button:hover {
-      transform: scale(1.1);
-    }
+/* Intro */
+#intro {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-    .love {
-      position: absolute;
-      color: white;
-      font-size: 20px;
-      animation: fall linear;
-      pointer-events: none;
-    }
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  margin: 10px;
+  cursor: pointer;
+}
 
-    @keyframes fall {
-      from {
-        transform: translateY(-50px);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(110vh);
-        opacity: 0;
-      }
-    }
-  </style>
+/* Main */
+#main {
+  display: none;
+}
+
+#message {
+  margin-top: 25%;
+  font-size: 28px;
+}
+
+/* Proposal Section */
+#proposal {
+  display: none;
+  margin-top: 30px;
+}
+
+#yes {
+  background: #00c853;
+  color: white;
+}
+
+#no {
+  background: #d50000;
+  color: white;
+  position: relative;
+}
+</style>
 </head>
 
 <body>
 
-  <h1>Hey My Love ❤️</h1>
-  <button onclick="startLove()">Click Me 💕</button>
+<!-- Background container -->
+<div id="bg"></div>
 
-  <script>
-    function startLove() {
-      // Start falling effect
-      setInterval(createLove, 200);
+<!-- Intro -->
+<div id="intro">
+  <h2>Hey Kaju ❤️<br>Click for a Surprise 💝</h2>
+  <button onclick="start()">Open My Heart 💌</button>
+</div>
 
-      // Pop-up messages
-      for (let i = 0; i < 10; i++) {
-        setTimeout(() => {
-          alert("I Love You ❤️");
-        }, i * 300);
-      }
-    }
+<!-- Main Content -->
+<div id="main">
+  <div id="message">I Love You Kaju ❤️</div>
 
-    function createLove() {
-      const love = document.createElement("div");
-      love.className = "love";
-      love.innerText = "I Love You ❤️";
+  <div id="proposal">
+    <h3>Kaju… Do You Love Me? 💖</h3>
+    <button id="yes" onclick="yesLove()">YES ❤️</button>
+    <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">NO 😢</button>
+  </div>
+</div>
 
-      love.style.left = Math.random() * 100 + "vw";
-      love.style.fontSize = (16 + Math.random() * 20) + "px";
+<script>
 
-      const duration = 3 + Math.random() * 3;
-      love.style.animationDuration = duration + "s";
+/* Background hearts always */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "bg-heart";
+  heart.innerText = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = 10 + Math.random() * 20 + "px";
+  heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+  document.getElementById("bg").appendChild(heart);
+  setTimeout(() => heart.remove(), 10000);
+}, 400);
 
-      document.body.appendChild(love);
+/* Start surprise */
+function start() {
 
-      // Remove after animation
-      setTimeout(() => {
-        love.remove();
-      }, duration * 1000);
-    }
-  </script>
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("main").style.display = "block";
+
+  setInterval(loveRain, 200);
+
+  setTimeout(() => {
+    document.getElementById("proposal").style.display = "block";
+  }, 6000);
+}
+
+/* Love rain */
+function loveRain() {
+
+  const text = document.createElement("div");
+  text.innerText = "I Love You ❤️";
+  text.style.position = "absolute";
+  text.style.left = Math.random() * 100 + "vw";
+  text.style.top = "-20px";
+  text.style.fontSize = 14 + Math.random() * 20 + "px";
+  text.style.animation = "fall 4s linear";
+  document.body.appendChild(text);
+
+  setTimeout(() => text.remove(), 4000);
+}
+
+/* YES button */
+function yesLove() {
+  document.getElementById("proposal").innerHTML =
+    "<h2>Yayyyyy 😍💖<br>I Knew It!!!<br>Forever Together 💍❤️</h2>";
+}
+
+/* NO button runs away */
+function moveNo() {
+  const noBtn = document.getElementById("no");
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  noBtn.style.position = "absolute";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+</script>
 
 </body>
 </html>
