@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #ff758c, #ff7eb3);
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      background: white;
+      color: #ff4d6d;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .love {
+      position: absolute;
+      color: white;
+      font-size: 20px;
+      animation: fall linear;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-50px);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Hey My Love ❤️</h1>
+  <button onclick="startLove()">Click Me 💕</button>
+
+  <script>
+    function startLove() {
+      // Start falling effect
+      setInterval(createLove, 200);
+
+      // Pop-up messages
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          alert("I Love You ❤️");
+        }, i * 300);
+      }
+    }
+
+    function createLove() {
+      const love = document.createElement("div");
+      love.className = "love";
+      love.innerText = "I Love You ❤️";
+
+      love.style.left = Math.random() * 100 + "vw";
+      love.style.fontSize = (16 + Math.random() * 20) + "px";
+
+      const duration = 3 + Math.random() * 3;
+      love.style.animationDuration = duration + "s";
+
+      document.body.appendChild(love);
+
+      // Remove after animation
+      setTimeout(() => {
+        love.remove();
+      }, duration * 1000);
+    }
+  </script>
+
+</body>
+</html>
