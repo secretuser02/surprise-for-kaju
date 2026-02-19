@@ -82,6 +82,11 @@ button {
 
 <body>
 
+<!-- Background Music -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <!-- Background container -->
 <div id="bg"></div>
 
@@ -93,7 +98,7 @@ button {
 
 <!-- Main Content -->
 <div id="main">
-  <div id="message">I Love You Kaju Bhot Sara❤️</div>
+  <div id="message">I Love You Kaju Bhot Sara ❤️</div>
 
   <div id="proposal">
     <h3>Kaju… Do You Love Me? 💖</h3>
@@ -118,6 +123,15 @@ setInterval(() => {
 
 /* Start surprise */
 function start() {
+
+  // Play music (mobile safe)
+  const music = document.getElementById("music");
+  music.muted = false;
+  music.volume = 1;
+
+  music.play().catch(() => {
+    console.log("Music blocked by browser");
+  });
 
   document.getElementById("intro").style.display = "none";
   document.getElementById("main").style.display = "block";
@@ -164,5 +178,3 @@ function moveNo() {
 
 </body>
 </html>
-
-
