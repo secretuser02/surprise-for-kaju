@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Kaju ❤️</title>
+<title>Forgive Me Kaju ❤️</title>
 
 <style>
 body {
@@ -57,7 +57,7 @@ button {
 }
 
 #message {
-  margin-top: 25%;
+  margin-top: 20%;
   font-size: 28px;
 }
 
@@ -77,6 +77,18 @@ button {
   color: white;
   position: relative;
 }
+
+/* Photo gallery */
+#photos {
+  margin-top: 30px;
+}
+
+#photos img {
+  width: 120px;
+  border-radius: 12px;
+  margin: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+}
 </style>
 </head>
 
@@ -87,29 +99,40 @@ button {
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Background container -->
 <div id="bg"></div>
 
 <!-- Intro -->
 <div id="intro">
-  <h2>Hey Kaju ❤️<br>Click for a Surprise 💝</h2>
-  <button onclick="start()">Open My Heart 💌</button>
+  <h2>Hey Kaju ❤️<br>I Made Something For You 🥺</h2>
+  <button onclick="start()">Open It 💌</button>
 </div>
 
 <!-- Main Content -->
 <div id="main">
-  <div id="message">I Love You Kaju Bhot Sara ❤️</div>
+
+  <div id="message">
+    I'm really sorry Kaju 🥺❤️<br>
+    I didn't mean to hurt you.
+  </div>
+
+  <!-- Photos -->
+  <div id="photos">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+  </div>
 
   <div id="proposal">
-    <h3>Kaju… Do You Love Me? 💖</h3>
+    <h3>Kaju… Will You Forgive Me? 💖</h3>
     <button id="yes" onclick="yesLove()">YES ❤️</button>
     <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">NO 😢</button>
   </div>
+
 </div>
 
 <script>
 
-/* Background hearts always */
+/* Background hearts */
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "bg-heart";
@@ -124,13 +147,12 @@ setInterval(() => {
 /* Start surprise */
 function start() {
 
-  // Play music (mobile safe)
   const music = document.getElementById("music");
   music.muted = false;
   music.volume = 1;
 
   music.play().catch(() => {
-    console.log("Music blocked by browser");
+    console.log("Music blocked");
   });
 
   document.getElementById("intro").style.display = "none";
@@ -143,11 +165,11 @@ function start() {
   }, 6000);
 }
 
-/* Love rain */
+/* Falling text */
 function loveRain() {
 
   const text = document.createElement("div");
-  text.innerText = "I Love You Baby ❤️";
+  text.innerText = "Sorry Baby ❤️";
   text.style.position = "absolute";
   text.style.left = Math.random() * 100 + "vw";
   text.style.top = "-20px";
@@ -161,7 +183,7 @@ function loveRain() {
 /* YES button */
 function yesLove() {
   document.getElementById("proposal").innerHTML =
-    "<h2>Yayyyyy 😍💖<br>I Knew It!!!<br>Forever Together 💍❤️</h2>";
+    "<h2>Thank you baby 🥺❤️<br>I knew you couldn't stay angry with me.<br>I know you're on your periods and I should have been more caring.<br>I love you so much ❤️</h2>";
 }
 
 /* NO button runs away */
