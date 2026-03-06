@@ -6,194 +6,241 @@
 <title>Forgive Me Kaju ❤️</title>
 
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ff4d6d, #8e0e00);
-  text-align: center;
-  color: white;
+
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#ff4d6d,#8e0e00);
+  text-align:center;
+  color:white;
 }
 
-/* Background Hearts */
-.bg-heart {
-  position: absolute;
-  color: rgba(255,255,255,0.3);
-  pointer-events: none;
-  animation: fall linear infinite;
+/* background hearts */
+
+.bg-heart{
+  position:absolute;
+  color:rgba(255,255,255,0.3);
+  pointer-events:none;
+  animation:fall linear infinite;
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
+@keyframes fall{
+  to{
+    transform:translateY(110vh);
+    opacity:0;
   }
 }
 
-/* Intro */
-#intro {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+/* intro screen */
+
+#intro{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
 }
 
-button {
-  padding: 12px 25px;
-  font-size: 16px;
-  border: none;
-  border-radius: 30px;
-  margin: 10px;
-  cursor: pointer;
+/* buttons */
+
+button{
+  padding:12px 25px;
+  font-size:16px;
+  border:none;
+  border-radius:30px;
+  margin:10px;
+  cursor:pointer;
 }
 
-/* Main */
-#main {
-  display: none;
+#main{
+  display:none;
 }
 
-#message {
-  margin-top: 20%;
-  font-size: 28px;
+#message{
+  margin-top:18%;
+  font-size:28px;
 }
 
-/* Proposal Section */
-#proposal {
-  display: none;
-  margin-top: 30px;
+/* proposal */
+
+#proposal{
+  display:none;
+  margin-top:30px;
 }
 
-#yes {
-  background: #00c853;
-  color: white;
+#yes{
+  background:#00c853;
+  color:white;
 }
 
-#no {
-  background: #d50000;
-  color: white;
-  position: relative;
+#no{
+  background:#d50000;
+  color:white;
+  position:relative;
 }
 
-/* Photo gallery */
-#photos {
-  margin-top: 30px;
+/* photos */
+
+#photos{
+  margin-top:30px;
 }
 
-#photos img {
-  width: 120px;
-  border-radius: 12px;
-  margin: 10px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+#photos img{
+  width:120px;
+  border-radius:12px;
+  margin:10px;
+  box-shadow:0 5px 10px rgba(0,0,0,0.4);
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- Background Music -->
-<audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
+<!-- MUSIC -->
+<audio id="music" preload="auto" loop>
+<source src="./music.mp3" type="audio/mpeg">
 </audio>
 
 <div id="bg"></div>
 
-<!-- Intro -->
+<!-- INTRO SCREEN -->
+
 <div id="intro">
-  <h2>Hey Kaju ❤️<br>I Made Something For You 🥺</h2>
-  <button onclick="start()">Open It 💌</button>
+<h2>Hey Kaju ❤️<br>I Made Something For You 🥺</h2>
+<button onclick="start()">Open It 💌</button>
 </div>
 
-<!-- Main Content -->
+<!-- MAIN CONTENT -->
+
 <div id="main">
 
-  <div id="message">
-    I'm really sorry Kaju 🥺❤️<br>
-    I didn't mean to hurt you.
-  </div>
+<div id="message">
+I'm really sorry Kaju 🥺❤️<br>
+I didn't mean to hurt you.
+</div>
 
-  <!-- Photos -->
-  <div id="photos">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
-  </div>
+<!-- PHOTOS -->
 
-  <div id="proposal">
-    <h3>Kaju… Will You Forgive Me? 💖</h3>
-    <button id="yes" onclick="yesLove()">YES ❤️</button>
-    <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">NO 😢</button>
-  </div>
+<div id="photos">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+</div>
+
+<!-- PROPOSAL -->
+
+<div id="proposal">
+<h3>Kaju… Will You Forgive Me? 💖</h3>
+
+<button id="yes" onclick="yesLove()">YES ❤️</button>
+
+<button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">
+NO 😢
+</button>
+
+</div>
 
 </div>
 
 <script>
 
-/* Background hearts */
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "bg-heart";
-  heart.innerText = "💗";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = 10 + Math.random() * 20 + "px";
-  heart.style.animationDuration = 5 + Math.random() * 5 + "s";
-  document.getElementById("bg").appendChild(heart);
-  setTimeout(() => heart.remove(), 10000);
-}, 400);
+/* background floating hearts */
 
-/* Start surprise */
-function start() {
+setInterval(()=>{
 
-  const music = document.getElementById("music");
-  music.muted = false;
-  music.volume = 1;
+const heart=document.createElement("div");
+heart.className="bg-heart";
+heart.innerText="💗";
 
-  music.play().catch(() => {
-    console.log("Music blocked");
-  });
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(10+Math.random()*20)+"px";
+heart.style.animationDuration=(5+Math.random()*5)+"s";
 
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("main").style.display = "block";
+document.getElementById("bg").appendChild(heart);
 
-  setInterval(loveRain, 200);
+setTimeout(()=>heart.remove(),10000);
 
-  setTimeout(() => {
-    document.getElementById("proposal").style.display = "block";
-  }, 6000);
+},400);
+
+
+
+/* start surprise */
+
+function start(){
+
+const music=document.getElementById("music");
+
+music.volume=1;
+
+music.play().catch(function(err){
+console.log("Music blocked",err);
+});
+
+document.getElementById("intro").style.display="none";
+document.getElementById("main").style.display="block";
+
+setInterval(loveRain,200);
+
+setTimeout(function(){
+document.getElementById("proposal").style.display="block";
+},6000);
+
 }
 
-/* Falling text */
-function loveRain() {
 
-  const text = document.createElement("div");
-  text.innerText = "Sorry Baby ❤️";
-  text.style.position = "absolute";
-  text.style.left = Math.random() * 100 + "vw";
-  text.style.top = "-20px";
-  text.style.fontSize = 14 + Math.random() * 20 + "px";
-  text.style.animation = "fall 4s linear";
-  document.body.appendChild(text);
 
-  setTimeout(() => text.remove(), 4000);
+/* falling sorry texts */
+
+function loveRain(){
+
+const text=document.createElement("div");
+
+text.innerText="Sorry Baby ❤️";
+
+text.style.position="absolute";
+text.style.left=Math.random()*100+"vw";
+text.style.top="-20px";
+text.style.fontSize=(14+Math.random()*20)+"px";
+text.style.animation="fall 4s linear";
+
+document.body.appendChild(text);
+
+setTimeout(()=>text.remove(),4000);
+
 }
 
-/* YES button */
-function yesLove() {
-  document.getElementById("proposal").innerHTML =
-    "<h2>Thank you baby 🥺❤️<br>I knew you couldn't stay angry with me.<br>I know you're on your periods and I should have been more caring.<br>I love you so much ❤️</h2>";
+
+
+/* YES BUTTON */
+
+function yesLove(){
+
+document.getElementById("proposal").innerHTML=
+
+"<h2>Thank you baby 🥺❤️<br>I knew you couldn't stay angry with me.<br>I know you're on your periods and I should have been more caring.<br>I love you so much ❤️</h2>";
+
 }
 
-/* NO button runs away */
-function moveNo() {
-  const noBtn = document.getElementById("no");
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
-  noBtn.style.position = "absolute";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+
+
+/* NO BUTTON RUNS AWAY */
+
+function moveNo(){
+
+const noBtn=document.getElementById("no");
+
+const x=Math.random()*(window.innerWidth-100);
+const y=Math.random()*(window.innerHeight-50);
+
+noBtn.style.position="absolute";
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+
 }
 
 </script>
